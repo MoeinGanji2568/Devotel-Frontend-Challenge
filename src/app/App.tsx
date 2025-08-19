@@ -1,5 +1,7 @@
+import { TodoListView } from "../view/todo";
+
 function App() {
-  return <div></div>;
+  return <TodoListView />;
 }
 
 export default App;
