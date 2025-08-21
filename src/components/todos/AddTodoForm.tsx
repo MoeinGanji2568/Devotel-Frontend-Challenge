@@ -1,18 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
 import { type FieldValues, useForm } from "react-hook-form";
-import z from "zod";
 import { useTodoActions } from "../../hooks/todoActions/useTodoActions";
 import { Button } from "../ui/button";
 import { RHFTextInput } from "../ui/RHFTextInpt/RHFTextInput";
+import { todoValidation } from "../../core/validation/todoValidation";
 
 const AddTodoForm = () => {
-  const schema = z.object({
-    addTodo: z.string().min(1, { message: "Todo is required" }),
-  });
-
   const { register, handleSubmit, reset } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(todoValidation),
   });
   const { addNewTodo } = useTodoActions();
 
@@ -24,7 +20,7 @@ const AddTodoForm = () => {
     };
 
     addNewTodo(newData);
-    reset(); // Clear form after submission
+    reset();
   };
 
   return (

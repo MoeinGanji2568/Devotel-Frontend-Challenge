@@ -22,7 +22,13 @@ export const useTodoActions = () => {
   };
 
   const updateExistingTodo = (todo: Todo) => {
-    dispatch(updateTodo(todo));
+    try {
+      toast.success("Todo updated successfully");
+      dispatch(updateTodo(todo));
+    } catch (error) {
+      toast.error("Failed to update todo");
+      console.log(error);
+    }
   };
 
   const removeTodo = (id: number) => {

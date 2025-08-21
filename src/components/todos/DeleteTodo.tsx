@@ -14,7 +14,7 @@ const DeleteTodo: FC<DeleteTodoProps> = ({ todoId }) => {
   return (
     <>
       <Trash
-        className="size-5 text-C_gray-200 cursor-pointer mt-2"
+        className="size-4 text-C_gray-200 cursor-pointer mt-2"
         onClick={() => setIsDeleteOpen(true)}
       />
       <Modal

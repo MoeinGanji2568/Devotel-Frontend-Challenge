@@ -4,6 +4,7 @@ import { useTodoActions } from "../../hooks/todoActions/useTodoActions";
 import type { TodoCardProps } from "../../types/todo/todo.types";
 import { Typography } from "../ui/typography";
 import DeleteTodo from "./DeleteTodo";
+import UpdateTodo from "./UpdateTodo";
 
 const TodoCard: FC<TodoCardProps> = ({
   todo,
@@ -66,8 +67,9 @@ const TodoCard: FC<TodoCardProps> = ({
           )}
         </div>
 
-        <div className="flex-shrink-0">
-          <DeleteTodo todoId={todo.id} />
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <DeleteTodo todoId={todo?.id} />
+          <UpdateTodo todo={todo} />
         </div>
       </div>
     </div>
