@@ -131,9 +131,9 @@ const TodoList = () => {
             </section>
 
             {/* Filter section */}
-            <aside className="lg:w-80">
+            <div className="lg:w-80 sticky top-3 h-fit">
               <FilterSection />
-            </aside>
+            </div>
           </div>
         </div>
       </main>
