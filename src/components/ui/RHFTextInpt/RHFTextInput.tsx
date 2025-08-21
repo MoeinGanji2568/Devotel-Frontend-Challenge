@@ -21,7 +21,7 @@ export const RHFTextInput = <T extends FieldValues>({
       {label && (
         <label
           htmlFor={id}
-          className="block text-sm font-medium text-gray-700 mb-2"
+          className="block text-sm font-medium text-text-primary mb-2"
         >
           {label}
         </label>
@@ -29,13 +29,13 @@ export const RHFTextInput = <T extends FieldValues>({
       <input
         type={type}
         placeholder={placeholder}
-        className={`custom-input ${className}`}
+        className={`w-full rounded-lg p-3 border transition-colors duration-200 bg-background-secondary text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-C_primary-100 focus:border-C_primary-100 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
         {...register?.(name as Path<T>)}
         defaultValue={defaultValue}
         disabled={disabled}
       />
       {errors[name] && (
-        <p className="text-rose-500 text-sm mt-1">
+        <p className="text-C_red-100 text-sm mt-1">
           {errors[name]?.message as string}
         </p>
       )}

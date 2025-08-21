@@ -22,7 +22,7 @@ const RTHSelectOption = <T extends FieldValues = FieldValues>({
       {label && (
         <label
           htmlFor={id}
-          className="block text-sm font-medium text-gray-700 mb-2"
+          className="block text-sm font-medium text-text-primary mb-2"
         >
           {label}
         </label>
@@ -30,10 +30,10 @@ const RTHSelectOption = <T extends FieldValues = FieldValues>({
       <select
         id={id}
         {...register(name)}
-        className={`w-full rounded-md border p-2 my-1 ${
+        className={`w-full rounded-lg p-3 border transition-colors duration-200 bg-background-secondary text-text-primary focus:outline-none focus:ring-2 focus:ring-C_primary-100 focus:border-C_primary-100 ${
           disabled
-            ? "border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed"
-            : "border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            ? "opacity-50 cursor-not-allowed border-border-secondary"
+            : "border-border-primary"
         }`}
       >
         {options.map((option) => (
