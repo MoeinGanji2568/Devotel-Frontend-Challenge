@@ -1,9 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Provider } from "react-redux";
-import { store } from "../store";
-import { ThemeProvider } from "../contexts/ThemeContext";
-import { TodoListView } from "../view/todo";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import { ThemeProvider } from "../contexts/ThemeContext";
+import { store } from "../store";
+import { TodoListView } from "../view/todo";
 
 function App() {
   const queryClient = new QueryClient();

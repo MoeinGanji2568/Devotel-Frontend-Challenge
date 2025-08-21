@@ -12,7 +12,7 @@ const variantClasses: Record<TypographyVariant, string> = {
   h5: "text-lg font-semibold tracking-tight text-text-primary",
   h6: "text-base font-medium tracking-tight text-text-primary",
   p: "text-xs md:text-base lg:leading-7 text-text-secondary",
-  small: "text-sm text-text-tertiary",
+  small: "text-sm",
   blockquote:
     "border-l-4 border-border-primary pl-4 italic text-text-secondary",
 };
