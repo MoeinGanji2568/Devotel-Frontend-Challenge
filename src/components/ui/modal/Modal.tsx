@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
 import type { ModalProps } from "./Modal.types";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function Modal({
   open,
@@ -9,6 +10,7 @@ function Modal({
   children,
   description = "",
 }: ModalProps) {
+  const ref = useOutsideClick(onClose);
   return (
     open &&
     createPortal(
@@ -17,6 +19,7 @@ function Modal({
            w-full h-screen bg-black/30 dark:bg-black/50 z-50"
       >
         <div
+          ref={ref}
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
         rounded-lg bg-card-background border border-card-border p-4 shadow-lg transition-all duration-500 ease-out
         w-[calc(100vw-2rem)] md:max-w-lg max-h-[calc(100vh-2rem)] overflow-y-auto"
