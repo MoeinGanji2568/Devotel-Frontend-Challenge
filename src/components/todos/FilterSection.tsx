@@ -1,13 +1,13 @@
+import { Filter, Search, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useTodosWithRedux } from "../../hooks/todoRQHook/useTodosWithRedux";
+import { useAppDispatch } from "../../store/hooks";
+import { setTodos } from "../../store/slices/todoSlice";
+import type { FilterFormData, Todo } from "../../types/todo/todo.types";
 import { RHFTextInput } from "../ui/RHFTextInpt/RHFTextInput";
 import RTHSelectOption from "../ui/SelectOpt";
 import { Button } from "../ui/button";
-import { useForm } from "react-hook-form";
-import { Search, Filter, X } from "lucide-react";
-import { useTodosWithRedux } from "../../hooks/todoRQHook/useTodosWithRedux";
-import { setTodos } from "../../store/slices/todoSlice";
-import { useAppDispatch } from "../../store/hooks";
-import { useState, useEffect, useMemo } from "react";
-import type { FilterFormData, Todo } from "../../types/todo/todo.types";
 
 const FILTER_OPTIONS = [
   { value: "all", label: "All" },
@@ -16,7 +16,7 @@ const FILTER_OPTIONS = [
 ];
 
 const FilterSection = () => {
-  const { todos, data } = useTodosWithRedux();
+  const { data } = useTodosWithRedux();
   const dispatch = useAppDispatch();
   const [originalTodos, setOriginalTodos] = useState<Todo[]>([]);
 
@@ -27,12 +27,6 @@ const FilterSection = () => {
   }, [data]);
 
   const { register, handleSubmit, reset } = useForm<FilterFormData>();
-
-  const stats = useMemo(() => {
-    const completedCount = todos.filter((todo) => todo.completed).length;
-    const pendingCount = todos.length - completedCount;
-    return { completedCount, pendingCount };
-  }, [todos]);
 
   const onSubmit = (data: FilterFormData) => {
     let filteredTodos = originalTodos;
@@ -121,30 +115,6 @@ const FilterSection = () => {
           </Button>
         </div>
       </form>
-
-      <div className="mt-6 pt-4 border-t border-border-primary">
-        <h4 className="text-sm font-medium text-text-primary mb-3">
-          Quick Stats
-        </h4>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 text-center border border-green-200 dark:border-green-800">
-            <div className="text-lg font-semibold text-green-600 dark:text-green-400">
-              {stats.completedCount}
-            </div>
-            <div className="text-xs text-green-600 dark:text-green-400">
-              Completed
-            </div>
-          </div>
-          <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 text-center border border-orange-200 dark:border-orange-800">
-            <div className="text-lg font-semibold text-orange-600 dark:text-orange-400">
-              {stats.pendingCount}
-            </div>
-            <div className="text-xs text-orange-600 dark:text-orange-400">
-              Pending
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

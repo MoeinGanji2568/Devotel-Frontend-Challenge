@@ -7,23 +7,17 @@ import TodoHeader from "./TodoHeader";
 import { useDispatch } from "react-redux";
 import { reorderTodos } from "../../store/slices/todoSlice";
 import { useState, useCallback } from "react";
+import { Typography } from "../ui/typography";
+import { useTodoStats } from "../../hooks/useTodoStats";
 
-/**
- * TodoList component with drag and drop functionality
- *
- * Features:
- * - Drag and drop reordering of todo cards
- * - Visual feedback during drag operations
- * - Maintains order in Redux store
- * - Works with filtered results (reorders the currently displayed todos)
- */
 const TodoList = () => {
   const { todos, isLoading, error } = useTodosWithRedux();
   const dispatch = useDispatch();
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [dragStartIndex, setDragStartIndex] = useState<number | null>(null);
 
-  // We render reversed, so map visual index to actual index in state
+  const { completedCount, pendingCount } = useTodoStats(todos);
+
   const toActualIndex = useCallback(
     (visualIndex: number) => {
       return todos.length - 1 - visualIndex;
@@ -82,9 +76,22 @@ const TodoList = () => {
           <div className="flex flex-col lg:flex-row gap-6">
             <section className="flex-1 lg:max-w-2xl">
               <div className="bg-card-background rounded-lg shadow-sm border border-card-border p-4 lg:p-6 transition-colors duration-200">
-                <h2 className="text-xl font-semibold text-text-primary mb-4">
-                  Todo List
-                </h2>
+                <div className="flex items-center justify-between">
+                  <Typography
+                    variant="h2"
+                    className="text-xl font-semibold text-text-primary mb-4"
+                  >
+                    Todo List
+                  </Typography>
+                  <div className="rounded-full bg-C_primary-100 p-1 px-2 mb-2">
+                    <Typography
+                      variant="small"
+                      className="text-C_gray-50 text-xs "
+                    >
+                      {completedCount} completed & {pendingCount} pending
+                    </Typography>
+                  </div>
+                </div>
                 {isLoading && (
                   <div className="flex items-center justify-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-C_primary-100"></div>
