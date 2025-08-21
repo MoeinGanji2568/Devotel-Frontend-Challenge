@@ -11,7 +11,7 @@ export const getTodoById = async (id: string) => {
   return response?.data;
 };
 
-export const createTodo = async (data: Todo) => {
+export const createTodo = async (data: Omit<Todo, "id">) => {
   const response = await http.post("/todos/add", data);
   return response?.data;
 };
