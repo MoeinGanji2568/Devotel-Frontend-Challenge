@@ -13,20 +13,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@layer base {
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+}
+
 @layer components {
   .holder {
     @apply min-w-[330px] max-w-[740px] mx-auto px-2;
   }
-  .btn {
-    @apply p-4 rounded-lg transition-all duration-300 text-base;
-  }
-  .custom-input {
-    @apply bg-C_gray-400 text-C_gray-100 p-4 border-black border rounded-lg outline-none;
-  }
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
