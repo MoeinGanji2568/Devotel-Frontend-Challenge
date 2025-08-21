@@ -74,6 +74,10 @@ const TodoList = () => {
         <AddTodoForm />
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col lg:flex-row gap-6">
+            {/* Filter section */}
+            <div className="lg:w-80 lg:sticky top-3 h-fit">
+              <FilterSection />
+            </div>
             <section className="flex-1 lg:max-w-2xl">
               <div className="bg-card-background rounded-lg shadow-sm border border-card-border p-4 lg:p-6 transition-colors duration-200">
                 <div className="flex items-center justify-between">
@@ -129,11 +133,6 @@ const TodoList = () => {
                 )}
               </div>
             </section>
-
-            {/* Filter section */}
-            <div className="lg:w-80 sticky top-3 h-fit">
-              <FilterSection />
-            </div>
           </div>
         </div>
       </main>
